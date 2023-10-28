@@ -12,8 +12,8 @@ click derecho en libraries y añadir archivo .jar (puede aparecer la opcion de d
 
 ![image](https://github.com/CristhianRudolf7/DuolingoMetodologia/assets/134737468/0579ebeb-31af-4667-9c80-4d450ae68acf)
 
-en el apartado de Java Proyects > Referenced Libraries 
+en el apartado de Java Proyects > Referenced Libraries (ver la imagen de arriba)
 
 ![image](https://github.com/CristhianRudolf7/DuolingoMetodologia/assets/134737468/5ff2d1a2-5d88-42d4-864d-6de4e8f02893)
 
-hacen click en el + y localizan el archivo.
+hacen click en el + y localizan el archivo. (ver la imagen de arriba)
