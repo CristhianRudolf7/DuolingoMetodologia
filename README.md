@@ -8,7 +8,7 @@ añadanlo en en el apartado libraries:
 
 click derecho en libraries y añadir archivo .jar (puede aparecer la opcion de distintas formas) y luego busquen el archivo que descargaron.
 
--Visual Studio Code:
+- Visual Studio Code:
 
 ![image](https://github.com/CristhianRudolf7/DuolingoMetodologia/assets/134737468/0579ebeb-31af-4667-9c80-4d450ae68acf)
 
