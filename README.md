@@ -17,3 +17,8 @@ en el apartado de Java Proyects > Referenced Libraries (ver la imagen de arriba)
 ![image](https://github.com/CristhianRudolf7/DuolingoMetodologia/assets/134737468/5ff2d1a2-5d88-42d4-864d-6de4e8f02893)
 
 hacen click en el + y localizan el archivo. (ver la imagen de arriba)
+
+si siguieron tiene alguna duda pregunten.
+
+![image](https://github.com/CristhianRudolf7/DuolingoMetodologia/assets/134737468/ece14dac-b92f-449f-8505-63fba5cfb31f)
+
