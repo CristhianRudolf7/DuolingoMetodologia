@@ -10,11 +10,23 @@ public class Usuario {
     private ArrayList<>
     //constructor
     public Usuario(){
-        this.token=entradaStg();
+        this.token=creaToken();
     }
-    private String entradaStg(String mensaje, String titulo){
-        String aux="";
-        aux=JOptionPane.showInputDialog(null,"ingrese"+mensaje,titulo,JOptionPane.INFORMATION_MESSAGE);
-        
+    private void creaToken(){
+
+    }
+    private String entradaStg() {
+        String cadena = null;
+        while (cadena == null || cadena.isEmpty()) {
+            cadena = JOptionPane.showInputDialog(null, "Ingrese el nombre del candidato:", "Registro del candidato",
+                    JOptionPane.INFORMATION_MESSAGE);
+            System.out.println(cadena);
+            if (cadena == null) { // para que cancele la creación de un candidato
+                return "-1";
+            } else if (cadena.matches(".*\\d+.*")) { // si contiene algún numero
+                cadena = null;
+            }
+        }
+        return cadena;
     }
 }
