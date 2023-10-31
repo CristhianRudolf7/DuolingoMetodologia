@@ -58,6 +58,14 @@ public class Usuario {
         for (String aux2String: listaPreguntasAux) {
             mensaje+="("+opcion+") "+aux2String+"\n";
         }
+        //falta un metodo para mostrar el mensaje e iniciar el cuestionario con el mensaje
+            //el mensaje tiene este formato: 
+                /* ingles
+                 * respuesta random
+                 * respuesta random
+                 * respuesta random    una de esas es la correcta.
+                 * respuesta random
+                 * //* */
     }
 
     private String entradaStg(String mensaje,String titulo) {
