@@ -38,11 +38,11 @@ public class Menu {
         }
     }
 
-    public void user() {
-        
+    public void estudiante() {
+
     }
 
-    // metodos para usuarios
+    // metodos para estudiantes
     // traduce ingles a español ; traduce de español a ingles;
     // inicia cuestionario random.
     // ver calificaciones.
@@ -107,6 +107,19 @@ public class Menu {
             }
         }
         return cadena;
+    }
+
+    public int opcionMultiple(String[] opciones,String Mensaje,String titulo) {
+        int respuestaUsuario =JOptionPane.showOptionDialog(
+                null,
+                Mensaje,
+                titulo,
+                JOptionPane.PLAIN_MESSAGE,
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                null,
+                opciones,
+                opciones[0]);
+        return respuestaUsuario; // Si preciona x devuelve -1
     }
 
 }

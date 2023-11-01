@@ -1,7 +1,6 @@
 package VersionFinalAPoo;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
@@ -17,7 +16,7 @@ public class pregunta {
     String respuestaEscogida;
 
     //metodos
-    //constructor
+    //constructores
     public pregunta(){ //crea la pregunta
         this.palabraEspañol=entradaString("la pregunta:");
         this.respuestaIngles=entradaString("la respuesta correcta:");
@@ -28,6 +27,16 @@ public class pregunta {
             otrasRespuestasEspañol.add(entradaString("una respuesta incorrecta (español)"));
         }
     }
+    public pregunta(String palabraEspañol, String respuestaIngles, ArrayList<String> otrasRespuestasIngles,ArrayList<String> otrasRespuestasEspañol, String respuestaEscogida) { 
+        this.palabraEspañol = palabraEspañol;
+        this.respuestaIngles = respuestaIngles;
+        this.otrasRespuestasIngles = otrasRespuestasIngles;
+        this.otrasRespuestasEspañol = otrasRespuestasEspañol;
+        this.respuestaEscogida = respuestaEscogida;
+    }
+
+
+
     //entrada
     private String entradaString(String mensaje){
         String aux=null;
@@ -45,7 +54,7 @@ public class pregunta {
 
     //inicia la pregunta
     
-    public boolean cuestionario(String palabraEspañol, String respuestaIngles,ArrayList<String> otrasRespuestasIngles) {
+    public boolean cuestionario() {
         // Crear un array para almacenar las opciones, incluyendo la respuesta correcta
         // y otras opciones
         String[] opciones = new String[4];

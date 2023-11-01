@@ -44,8 +44,31 @@ public class Usuario {
         }
     }
 
-    public void cuestionarioIngles_Español(ArrayList<pregunta> listaDePreguntas){
-        
+    public void cuestionarioIngles_Español(ArrayList<pregunta> listaDePreguntas){ //inica el cuestionario de 5 preguntas
+        ArrayList<pregunta>listaSeleccionada=new ArrayList<>();
+        for (int i = 0; i < 5; i++) {//añade las preguntas de forma aleatoria
+            if(i==0){
+                listaDePreguntas.add(listaDePreguntas.get((int)Math.floor(Math.random()*(listaDePreguntas.size()-1))));
+            }else{
+                do{
+                    pregunta preguntaAux=listaDePreguntas.get((int)Math.floor(Math.random()*(listaDePreguntas.size()-1)));
+                    if(!listaSeleccionada.contains(preguntaAux)){
+                        listaDePreguntas.add(preguntaAux);
+                        break;
+                    }
+                }while(true);
+            }
+        }
+        int correctas=0;
+        int totales=0;
+        for (pregunta pregunta : listaSeleccionada) {
+            boolean correcto=pregunta.cuestionario();
+            if(correcto){
+                correctas++;
+            }
+            totales++;
+        }
+        calificaciones.add(new Calificaciones(totales, correctas));//añade lo respondido a calificaciones.
     }
 
 
@@ -64,19 +87,7 @@ public class Usuario {
         }
         return cadena;
     }
-    private int opcionMultiple(String[]opciones,String Mensaje,String titulo){
-        //la primera opcion es 0, luego 1, luego 2, etc. Si preciona x regresa un -1
-        int opcion=JOptionPane.showOptionDialog(
-        null,
-        Mensaje,
-        titulo,
-        JOptionPane.YES_NO_CANCEL_OPTION,
-        JOptionPane.PLAIN_MESSAGE,
-        null,
-        opciones,
-        opciones[0]);
-        return opcion;
-    }
+   
     public String getToken(){
         return this.token;
     }
