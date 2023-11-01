@@ -44,33 +44,11 @@ public class Usuario {
         }
     }
 
-    private boolean iniciaPreguntaTraduceEspañol(pregunta pregunta){
-        String[]listaPreguntasAux=new String[4];
+    public void cuestionarioIngles_Español(ArrayList<pregunta> listaDePreguntas){
         
-        ArrayList<Integer>yaElegidas=new ArrayList<>();
-        int j=0;
-        for (int i = 0; i < 4; i++) { //añade de forma aleatoria 1 respuesta
-            if(i==0){
-                j=(int)Math.floor(Math.random()*(pregunta.getOtrasRespuestasIngles().size()-1));
-            }else{
-                boolean repetir=true;
-                do {
-                    j=(int)Math.floor(Math.random()*(pregunta.getOtrasRespuestasIngles().size()-1));
-                    if(!yaElegidas.contains(j)){
-                        yaElegidas.add(j);
-                        repetir=false;
-                    }
-                }while (repetir);
-            }
-            listaPreguntasAux[i]=pregunta.getOtrasRespuestas(i);
-        }
-        int elegido=opcionMultiple(listaPreguntasAux, "Traduzca: "+pregunta.getRespuestaIngles(),"Pregunta");//envia la pregunta al metodo de opciones multiples
-        if(elegido!=-1){
-            return true; //true mencionando que si se contestó
-        }else{
-            return false; //false mencionando que precionó x
-        }
     }
+
+
 
 
     private String entradaStg(String mensaje,String titulo) {

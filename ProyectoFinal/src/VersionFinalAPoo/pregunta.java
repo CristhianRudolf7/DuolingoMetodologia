@@ -1,6 +1,8 @@
 package VersionFinalAPoo;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 import javax.swing.JOptionPane;
 
@@ -9,17 +11,21 @@ public class pregunta {
     String palabraEspañol;
     String respuestaIngles;
     ArrayList<String>otrasRespuestasIngles=new ArrayList<>();
+    ArrayList<String>otrasRespuestasEspañol=new ArrayList<>();
 
     //atributo si esta respuesta se guarda en un usuario
     String respuestaEscogida;
 
     //metodos
     //constructor
-    public pregunta(){
+    public pregunta(){ //crea la pregunta
         this.palabraEspañol=entradaString("la pregunta:");
         this.respuestaIngles=entradaString("la respuesta correcta:");
         while (otrasRespuestasIngles.size()<4) {
-            otrasRespuestasIngles.add(entradaString("una respuesta incorrecta"));
+            otrasRespuestasIngles.add(entradaString("una respuesta incorrecta (ingles)"));
+        }
+        while (otrasRespuestasIngles.size()<4) {
+            otrasRespuestasEspañol.add(entradaString("una respuesta incorrecta (español)"));
         }
     }
     //entrada
@@ -36,6 +42,71 @@ public class pregunta {
         }while(true);
         return aux;
     }
+
+    //inicia la pregunta
+    
+    public boolean cuestionario(String palabraEspañol, String respuestaIngles,ArrayList<String> otrasRespuestasIngles) {
+        // Crear un array para almacenar las opciones, incluyendo la respuesta correcta
+        // y otras opciones
+        String[] opciones = new String[4];
+
+        // Agregar la respuesta correcta y otras opciones al array
+        opciones[0] = respuestaIngles;
+        for (int i = 0; i < 3; i++) {
+            opciones[i + 1] = otrasRespuestasIngles.get(i);
+        }
+
+        // Mezclar todas las opciones de forma aleatoria
+        mezclarArray(opciones);
+
+        // Identificar la posición de la respuesta correcta en el array
+        int respuestaCorrectaIndex = 0;
+        for (int i = 0; i < opciones.length; i++) {
+            if (opciones[i].equals(respuestaIngles)) {
+                respuestaCorrectaIndex = i;
+                break;
+            }
+        }
+
+        // Llamar al método opcionMultiple() para que el usuario seleccione una opción
+        int respuestaUsuario = opcionMultiple(palabraEspañol, opciones);
+
+        // Verificar si la respuesta es correcta
+        boolean respuestaCorrecta = (respuestaUsuario == respuestaCorrectaIndex);
+        return respuestaCorrecta;
+    }
+
+    public int opcionMultiple(String palabraEspañol, String[] opciones) {
+        // Mostrar el cuestionario en JOptionPane
+        String respuestaUsuario = (String) JOptionPane.showInputDialog(
+                null,
+                "Traduce la palabra '" + palabraEspañol + "' al inglés:",
+                "Cuestionario",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                opciones,
+                opciones[0]);
+
+        // Devolver el índice de la respuesta del usuario en el array de opciones
+        for (int i = 0; i < opciones.length; i++) {
+            if (respuestaUsuario != null && respuestaUsuario.equals(opciones[i])) {
+                return i;
+            }
+        }
+        return -1; // Si la respuesta es nula o no coincide con las opciones disponibles
+    }
+
+    public void mezclarArray(String[] array) { //aleatoriza el array que se le dá
+        Random rnd = new Random();
+        for (int i = array.length - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            String temp = array[index];
+            array[index] = array[i];
+            array[i] = temp;
+        }
+    }
+
+
     //setter y getters
     public String getPalabraEspañol() {
         return palabraEspañol;

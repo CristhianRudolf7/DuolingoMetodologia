@@ -39,7 +39,7 @@ public class Menu {
     }
 
     public void user() {
-
+        
     }
 
     // metodos para usuarios
