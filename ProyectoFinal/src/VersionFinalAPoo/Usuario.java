@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
+
 import Prueba3.CalificacionUsuario;
 
 public class Usuario {
@@ -18,24 +20,36 @@ public class Usuario {
     }
     private void creaToken(){
         String nombre =entradaStg("su nombre","Creando token");
+        
         String apellido=entradaStg("su apellido", "Creando token");
-        int nombrelong=nombre.length();
-        int apellidolong=apellido.length();
-        int index=0;
-        for (int i = 0; i < 2; i++) {
-            index=(int)Math.floor(Math.random()*(nombrelong));
-            this.token=token+nombre.charAt(index);
+        if(nombre=="-1"||apellido=="-1"){
+            this.token="-1";
+        }else{
+            int nombrelong=nombre.length();
+            int apellidolong=apellido.length();
+            int index=0;
+            for (int i = 0; i < 2; i++) {
+                index=(int)Math.floor(Math.random()*(nombrelong));
+                this.token=token+nombre.charAt(index);
+            }
+            for (int i = 0; i < 2; i++) {
+                index=(int)Math.floor(Math.random()*(apellidolong));
+                this.token=token+apellido.charAt(index);
+            }
         }
-        for (int i = 0; i < 2; i++) {
-            index=(int)Math.floor(Math.random()*(apellidolong));
-            this.token=token+apellido.charAt(index);
+        
+    }
+    public boolean borrar(){
+        if(this.token=="-1"){
+            return true;
+        }else{
+            return false;
         }
     }
 
-    private void iniciaPregunta(pregunta pregunta){
-        String mensaje="";
-        ArrayList<String>listaPreguntasAux=new ArrayList<>();
-        listaPreguntasAux.add(pregunta.getRespuestaIngles());
+    private boolean iniciaPreguntaTraduceEspañol(pregunta pregunta){
+        String[]listaPreguntasAux=new String[4];
+        
         ArrayList<Integer>yaElegidas=new ArrayList<>();
         int j=0;
         for (int i = 0; i < 4; i++) { //añade de forma aleatoria 1 respuesta
@@ -51,21 +65,16 @@ public class Usuario {
                     }
                 }while (repetir);
             }
-            listaPreguntasAux.add(pregunta.getOtrasRespuestas(j));
+            listaPreguntasAux[i]=pregunta.getOtrasRespuestas(i);
         }
-        mensaje=pregunta.getPalabraEspañol()+"\n";
-        int opcion=0;
-        for (String aux2String: listaPreguntasAux) {
-            mensaje+="("+opcion+") "+aux2String+"\n";
+        int elegido=opcionMultiple(listaPreguntasAux, "Traduzca: "+pregunta.getRespuestaIngles(),"Pregunta");//envia la pregunta al metodo de opciones multiples
+        if(elegido!=-1){
+            preguntasRespondidas.add(pregunta); //añade la pregunta a la lista de pregutas respondidas
+            preguntasRespondidas.get(preguntasRespondidas.size()-1).setRespuestaEscogida(listaPreguntasAux[elegido]); //guarda en esa pregunta la respuesta que eligió.
+            return true; //true mencionando que si se contestó
+        }else{
+            return false; //false mencionando que precionó x
         }
-        //falta un metodo para mostrar el mensaje e iniciar el cuestionario con el mensaje
-            //el mensaje tiene este formato: 
-                /* ingles
-                 * respuesta random
-                 * respuesta random
-                 * respuesta random    una de esas es la correcta.
-                 * respuesta random
-                 * //* */
     }
 
     private String entradaStg(String mensaje,String titulo) {
@@ -80,5 +89,18 @@ public class Usuario {
             }
         }
         return cadena;
+    }
+    private int opcionMultiple(String[]opciones,String Mensaje,String titulo){
+        //la primera opcion es 0, luego 1, luego 2, etc. Si preciona x regresa un -1
+        int opcion=JOptionPane.showOptionDialog(
+        null,
+        Mensaje,
+        titulo,
+        JOptionPane.YES_NO_CANCEL_OPTION,
+        JOptionPane.PLAIN_MESSAGE,
+        null,
+        opciones,
+        opciones[0]);
+        return opcion;
     }
 }
