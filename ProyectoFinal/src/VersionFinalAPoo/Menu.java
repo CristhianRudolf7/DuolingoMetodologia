@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -50,12 +51,12 @@ public class Menu {
 
     }
 
-    public void calificaciones(){//si accede a sus calificaciones con su token sin iniciar secion
+    public void calificaciones() throws DocumentException{//si accede a sus calificaciones con su token sin iniciar secion
         Usuario useraux=iniciaSesion();
         descargarPDF(useraux);
     }
 
-    public void descargarPDF(Usuario user) {
+    public void descargarPDF(Usuario user) throws DocumentException {
         String tokenaux=entradaStg("Ingrese su token:", "Descargar pdf");
         for (Usuario usuario : listaDeUsuarios) {
             if(usuario.getToken().equals(tokenaux)){
