@@ -2,24 +2,21 @@ package VersionFinalAPoo;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JOptionPane;
 
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
-
-import Prueba3.CalificacionUsuario;
 
 public class Usuario {
     //atributos
+    private String nombre;
     private String token;
-    private List<CalificacionUsuario> calificaciones=new ArrayList<>();
-    private ArrayList<pregunta> preguntasRespondidas=new ArrayList<>();
+    private List<Calificaciones> calificaciones;
     //constructor
     public Usuario(){
         creaToken();
     }
+
     private void creaToken(){
-        String nombre =entradaStg("su nombre","Creando token");
+        this.nombre =entradaStg("su nombre","Creando token");
         
         String apellido=entradaStg("su apellido", "Creando token");
         if(nombre=="-1"||apellido=="-1"){
@@ -69,13 +66,12 @@ public class Usuario {
         }
         int elegido=opcionMultiple(listaPreguntasAux, "Traduzca: "+pregunta.getRespuestaIngles(),"Pregunta");//envia la pregunta al metodo de opciones multiples
         if(elegido!=-1){
-            preguntasRespondidas.add(pregunta); //añade la pregunta a la lista de pregutas respondidas
-            preguntasRespondidas.get(preguntasRespondidas.size()-1).setRespuestaEscogida(listaPreguntasAux[elegido]); //guarda en esa pregunta la respuesta que eligió.
             return true; //true mencionando que si se contestó
         }else{
             return false; //false mencionando que precionó x
         }
     }
+
 
     private String entradaStg(String mensaje,String titulo) {
         String cadena = null;
@@ -103,4 +99,29 @@ public class Usuario {
         opciones[0]);
         return opcion;
     }
+    public String getToken(){
+        return this.token;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public List<Calificaciones> getCalificaciones() {
+        return calificaciones;
+    }
+
+    public void setCalificaciones(List<Calificaciones> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+    
+
 }

@@ -41,10 +41,10 @@ public class Prueba1 {
                         opcion = JOptionPane.showInputDialog(menuD
                                 + "¿Qué deseas realizar?\n1. Traducir del inglés al español\n2. Traducir del español al inglés\n3. Ver calificaciones\n4. Descargar PDF de notas \n5. Comparar resultados\n0. Salir");
                         if (opcion.equals("1")) {
-                            CalificacionUsuario calificacion = traducirInglesEspanol(verbosIngles, traduccionesEspanol);
+                            Calificaciones calificacion = traducirInglesEspanol(verbosIngles, traduccionesEspanol);
                             usuario.agregarCalificacion(calificacion);
                         } else if (opcion.equals("2")) {
-                            CalificacionUsuario calificacion = traducirEspanolIngles(verbosIngles, traduccionesEspanol);
+                            Calificaciones calificacion = traducirEspanolIngles(verbosIngles, traduccionesEspanol);
                             usuario.agregarCalificacion(calificacion);
                         } else if (opcion.equals("3")) {
                             verCalificaciones(usuario);
@@ -54,8 +54,8 @@ public class Prueba1 {
                                 String titulo = usuario.getNombre() + ".pdf";
                                 String mensaje = "Calificaciones de " + usuario.getNombre() + ":\n";
                                 int i = 0;
-                                List<CalificacionUsuario> calificaciones = usuario.getCalificaciones();
-                                for (CalificacionUsuario calificacion : calificaciones) {
+                                List<Calificaciones> calificaciones = usuario.getCalificaciones();
+                                for (Calificaciones calificacion : calificaciones) {
                                     i++;
                                     mensaje += "\nLas calificaiones del examen " + i + " son:\n";
                                     mensaje += "Total de preguntas: " + calificacion.getPreguntasRealizadas() + "\n";
@@ -101,7 +101,7 @@ public class Prueba1 {
         }
     }
 
-    public static CalificacionUsuario traducirInglesEspanol(List<String> verbosIngles,
+    public static Calificaciones traducirInglesEspanol(List<String> verbosIngles,
             List<String> traduccionesEspanol) {
         Random random = new Random();
         int totalPreguntas = 0;
@@ -153,10 +153,10 @@ public class Prueba1 {
 
             totalPreguntas++;
         }
-        return new CalificacionUsuario(totalPreguntas, preguntasCorrectas);
+        return new Calificaciones(totalPreguntas, preguntasCorrectas);
     }
 
-    public static CalificacionUsuario traducirEspanolIngles(List<String> verbosIngles,
+    public static Calificaciones traducirEspanolIngles(List<String> verbosIngles,
             List<String> traduccionesEspanol) {
         Random random = new Random();
         int totalPreguntas = 0;
@@ -206,7 +206,7 @@ public class Prueba1 {
             }
             totalPreguntas++;
         }
-        return new CalificacionUsuario(totalPreguntas, preguntasCorrectas);
+        return new Calificaciones(totalPreguntas, preguntasCorrectas);
     }
 
     public static Usuario encontrarUsuario(List<Usuario> usuarios, String correo, String contraseña) {
@@ -219,10 +219,10 @@ public class Prueba1 {
     }
 
     public static void verCalificaciones(Usuario usuario) {
-        List<CalificacionUsuario> calificaciones = usuario.getCalificaciones();
+        List<Calificaciones> calificaciones = usuario.getCalificaciones();
         String mensaje = "Calificaciones de " + usuario.getNombre() + ":\n";
         int i = 0;
-        for (CalificacionUsuario calificacion : calificaciones) {
+        for (Calificaciones calificacion : calificaciones) {
             i++;
             mensaje += "\nLas calificaiones del examen " + i + " son:\n";
             mensaje += "Total de preguntas: " + calificacion.getPreguntasRealizadas() + "\n";
@@ -246,7 +246,7 @@ public class Prueba1 {
             double mayorPrecision = 0.0;
             double menorPrecision = 100.0;
 
-            for (CalificacionUsuario calificacion : usuario.getCalificaciones()) {
+            for (Calificaciones calificacion : usuario.getCalificaciones()) {
                 double precision = calificacion.getPorcentajeAcierto();
                 mayorPrecision = Math.max(mayorPrecision, precision);
                 menorPrecision = Math.min(menorPrecision, precision);

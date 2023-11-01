@@ -6,7 +6,7 @@ public class Usuario {
     private String nombre;
     private String correo;
     private String contraseña;
-    private List<CalificacionUsuario> calificaciones;
+    private List<Calificaciones> calificaciones;
 
     public Usuario(String nombre, String correo, String contraseña) {
         this.nombre = nombre;
@@ -27,11 +27,11 @@ public class Usuario {
         return contraseña;
     }
 
-    public List<CalificacionUsuario> getCalificaciones() {
+    public List<Calificaciones> getCalificaciones() {
         return calificaciones;
     }
 
-    public void agregarCalificacion(CalificacionUsuario calificacion) {
+    public void agregarCalificacion(Calificaciones calificacion) {
         calificaciones.add(calificacion);
     }
     public double getPorcentajeMedioPrecision() {
@@ -39,7 +39,7 @@ public class Usuario {
             return 0.0;
         }
         double sum = 0.0;
-        for (CalificacionUsuario calificacion : calificaciones) {
+        for (Calificaciones calificacion : calificaciones) {
             sum += calificacion.getPorcentajeAcierto();
         }
         return sum / calificaciones.size();

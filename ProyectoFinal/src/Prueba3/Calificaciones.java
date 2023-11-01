@@ -1,9 +1,9 @@
 package Prueba3;
-public class CalificacionUsuario {
+public class Calificaciones {
     private int preguntasRealizadas;
     private int preguntasCorrectas;
 
-    public CalificacionUsuario(int preguntasRealizadas, int preguntasCorrectas) {
+    public Calificaciones(int preguntasRealizadas, int preguntasCorrectas) {
         this.preguntasRealizadas = preguntasRealizadas;
         this.preguntasCorrectas = preguntasCorrectas;
     }
