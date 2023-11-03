@@ -10,6 +10,8 @@ public class Usuario {
     private String nombre;
     private String token;
     private List<Calificaciones> calificaciones;
+    boolean esEstudiante;
+    boolean esAmdin;
     //constructor
     public Usuario(){
         creaToken();
@@ -19,6 +21,7 @@ public class Usuario {
         this.nombre =entradaStg("su nombre","Creando token");
         
         String apellido=entradaStg("su apellido", "Creando token");
+        token="";
         if(nombre=="-1"||apellido=="-1"){
             this.token="-1";
         }else{
@@ -28,12 +31,24 @@ public class Usuario {
             for (int i = 0; i < 2; i++) {
                 index=(int)Math.floor(Math.random()*(nombrelong));
                 this.token=token+nombre.charAt(index);
+                System.out.println(token);
             }
             for (int i = 0; i < 2; i++) {
                 index=(int)Math.floor(Math.random()*(apellidolong));
                 this.token=token+apellido.charAt(index);
+                System.out.println(token);
             }
         }
+        do{
+            JOptionPane.showMessageDialog(null, "Su token de acceso es:\n"+token+"\n(incluye mayusculas y minusculas)");
+            String confirmador=JOptionPane.showInputDialog("para continuar, confirme su token:");
+            if(confirmador.equals(token)){
+                JOptionPane.showMessageDialog(null, "Usuario registrado correctamente\nya puede iniciar sesión");
+                break;
+            }else{
+                JOptionPane.showMessageDialog(null, "EL token ingresado no es el correcto, intentelo otra vez");
+            }
+        }while(true);
         
     }
     public boolean borrar(){
@@ -86,6 +101,13 @@ public class Usuario {
             }
         }
         return cadena;
+    }
+
+    public boolean esEstudiante(){
+        return esEstudiante;
+    }
+    public boolean esAdmin(){
+        return esAmdin;
     }
    
     public String getToken(){

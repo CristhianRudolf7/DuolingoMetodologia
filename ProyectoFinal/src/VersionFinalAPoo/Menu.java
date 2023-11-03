@@ -18,15 +18,62 @@ public class Menu {
     ArrayList<Usuario> listaDeUsuarios = new ArrayList<>();
 
     // metodos
+    public void menu() {
+        do {
+            Usuario user;
+            String[] opciones = { "Iniciar Sesión", "Registarse", "Descargar notas", "Salir" };
+            int opcion = opcionMultiple(opciones, "Bienvenido", "Menú principal");
+            switch (opcion) {
+                case 0:// inicia seción
+                    user = iniciaSesion();
+                    if (user.esEstudiante()) {// si es un estudiante
+
+                    } else if (user.esAdmin()) {// si es un administrador
+
+                    }
+                    break;
+                case 1:// registrate
+                    listaDeUsuarios.add(new Usuario());
+                    break;
+                case 2: // descargar notas
+                    break;
+                case 3:
+                    int aux = JOptionPane.showConfirmDialog(null, "¡Esta seguro que quiere salir?");
+                    if (aux == 0) {
+                        System.exit(0);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        } while (true);//solo se sale precionando x o salir
+
+    }
+
     // inicio de seción
     public Usuario iniciaSesion() {
-        String tokenaux = JOptionPane.showInputDialog("Ingrese su token de acceso:");
-        for (Usuario usuarioaux : listaDeUsuarios) {
-            if(usuarioaux.getToken().equals(tokenaux)){
-                return usuarioaux;
+        String tokenaux;
+        Usuario userFinal = null;
+        boolean error = true;
+        do {
+            tokenaux = JOptionPane.showInputDialog("Ingrese su token de acceso:");// entrada del token
+            if (tokenaux == null) {
+                int aux = JOptionPane.showConfirmDialog(null, "¡Esta seguro que quiere salir?");
+                if (aux == 0) {
+                    System.exit(0);
+                }
+            } else {// busca e ltoken
+                for (Usuario usuarioaux : listaDeUsuarios) {
+                    if (usuarioaux.getToken().equals(tokenaux)) {
+                        userFinal = usuarioaux;
+                        error = false;
+                        break;
+                    }
+                }
+
             }
-        }
-        return null;
+        } while (error);
+        return userFinal;// devuelve el usuario
     }
 
     // crea nuevo usuario
@@ -38,7 +85,33 @@ public class Menu {
         }
     }
 
-    public void estudiante() {
+    public void estudiante(Usuario user) {
+        int opcion;
+        do {
+            String[] opciones = { "Cuestionario", "Calificaciones", "Salir" };
+            opcion = opcionMultiple(opciones, "¿Qué va a realizar?", "Menú Estudiante");
+            switch (opcion) {
+                case 0:// cuestionario
+                    String[] opciones2 = { "Español a Ingles", "Ingles a Español", "Salir" };
+                    opcion = opcionMultiple(opciones2, "Iniciar Cuestionario:", "Cuestionarios");
+                    switch (opcion) {
+                        case 0:// español a ingles
+
+                            break;
+                        case 1:// ingles a español
+
+                            break;
+
+                        default:// salir o x
+                            break;
+                    }
+                    break;
+                case 1:// calificaciones
+                    break;
+                default:
+                    break;
+            }
+        } while (opcion != 2);
 
     }
 
@@ -51,19 +124,20 @@ public class Menu {
 
     }
 
-    public void calificaciones() throws DocumentException{//si accede a sus calificaciones con su token sin iniciar secion
-        Usuario useraux=iniciaSesion();
+    public void calificaciones() throws DocumentException {// si accede a sus calificaciones con su token sin iniciar
+                                                           // secion
+        Usuario useraux = iniciaSesion();
         descargarPDF(useraux);
     }
 
     public void descargarPDF(Usuario user) throws DocumentException {
-        String tokenaux=entradaStg("Ingrese su token:", "Descargar pdf");
+        String tokenaux = entradaStg("Ingrese su token:", "Descargar pdf");
         for (Usuario usuario : listaDeUsuarios) {
-            if(usuario.getToken().equals(tokenaux)){
-                user=usuario;
+            if (usuario.getToken().equals(tokenaux)) {
+                user = usuario;
             }
         }
-        if(user.equals(null)){
+        if (user.equals(null)) {
 
         }
 
@@ -109,8 +183,8 @@ public class Menu {
         return cadena;
     }
 
-    public int opcionMultiple(String[] opciones,String Mensaje,String titulo) {
-        int respuestaUsuario =JOptionPane.showOptionDialog(
+    public int opcionMultiple(String[] opciones, String Mensaje, String titulo) {
+        int respuestaUsuario = JOptionPane.showOptionDialog(
                 null,
                 Mensaje,
                 titulo,
