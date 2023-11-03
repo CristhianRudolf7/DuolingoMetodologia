@@ -27,9 +27,9 @@ public class Menu {
                 case 0:// inicia seción
                     user = iniciaSesion();
                     if (user.esEstudiante()) {// si es un estudiante
-
+                        estudiante(user);
                     } else if (user.esAdmin()) {// si es un administrador
-
+                        admin(user);
                     }
                     break;
                 case 1:// registrate
@@ -120,7 +120,7 @@ public class Menu {
     // inicia cuestionario random.
     // ver calificaciones.
     // descargar pdf.
-    public void admin() {
+    public void admin(Usuario user) {
 
     }
 

@@ -49,7 +49,8 @@ public class Usuario {
                 JOptionPane.showMessageDialog(null, "EL token ingresado no es el correcto, intentelo otra vez");
             }
         }while(true);
-        
+        this.esEstudiante=true;
+        this.esAmdin=false;
     }
     public boolean borrar(){
         if(this.token=="-1"){
