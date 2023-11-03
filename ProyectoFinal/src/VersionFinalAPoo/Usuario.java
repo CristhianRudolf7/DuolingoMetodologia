@@ -78,7 +78,7 @@ public class Usuario {
         int correctas=0;
         int totales=0;
         for (pregunta pregunta : listaSeleccionada) {
-            boolean correcto=pregunta.cuestionario();
+            boolean correcto=pregunta.iniciaPreguntaEspañolIngles();
             if(correcto){
                 correctas++;
             }

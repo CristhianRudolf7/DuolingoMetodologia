@@ -52,9 +52,9 @@ public class pregunta {
         return aux;
     }
 
-    //inicia la pregunta
+    //inicia pregunta
     
-    public boolean cuestionario() {
+    public boolean iniciaPreguntaEspañolIngles() {
         // Crear un array para almacenar las opciones, incluyendo la respuesta correcta
         // y otras opciones
         String[] opciones = new String[4];
@@ -85,11 +85,44 @@ public class pregunta {
         return respuestaCorrecta;
     }
 
-    public int opcionMultiple(String palabraEspañol, String[] opciones) {
+    //inicia pregunta ingles a español
+
+    public boolean iniciaPreguntaInglesEspañol() {
+        // Crear un array para almacenar las opciones, incluyendo la respuesta correcta
+        // y otras opciones
+        String[] opciones = new String[4];
+
+        // Agregar la respuesta correcta y otras opciones al array
+        opciones[0] = palabraEspañol;
+        for (int i = 0; i < 3; i++) {
+            opciones[i + 1] = otrasRespuestasEspañol.get(i);
+        }
+
+        // Mezclar todas las opciones de forma aleatoria
+        mezclarArray(opciones);
+
+        // Identificar la posición de la respuesta correcta en el array
+        int respuestaCorrectaIndex = 0;
+        for (int i = 0; i < opciones.length; i++) {
+            if (opciones[i].equals(respuestaIngles)) {
+                respuestaCorrectaIndex = i;
+                break;
+            }
+        }
+
+        // Llamar al método opcionMultiple() para que el usuario seleccione una opción
+        int respuestaUsuario = opcionMultiple(palabraEspañol, opciones);
+
+        // Verificar si la respuesta es correcta
+        boolean respuestaCorrecta = (respuestaUsuario == respuestaCorrectaIndex);
+        return respuestaCorrecta;
+    }
+
+    public int opcionMultiple(String Pregunta, String[] opciones) {
         // Mostrar el cuestionario en JOptionPane
         String respuestaUsuario = (String) JOptionPane.showInputDialog(
                 null,
-                "Traduce la palabra '" + palabraEspañol + "' al inglés:",
+                "Traduce la palabra '" + palabraEspañol + "':",
                 "Cuestionario",
                 JOptionPane.QUESTION_MESSAGE,
                 null,
