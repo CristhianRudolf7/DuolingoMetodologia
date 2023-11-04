@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 public class pregunta {
     //atributos
     String palabraEspañol;
-    String respuestaIngles;
+    String palabraIngles;
     ArrayList<String>otrasRespuestasIngles;
     ArrayList<String>otrasRespuestasEspañol;
 
@@ -20,7 +20,7 @@ public class pregunta {
         otrasRespuestasEspañol=new ArrayList<>();
         otrasRespuestasIngles=new ArrayList<>();
         this.palabraEspañol=entradaString("la pregunta:");
-        this.respuestaIngles=entradaString("la respuesta correcta:");
+        this.palabraIngles=entradaString("la respuesta correcta:");
         while (otrasRespuestasIngles.size()<4) {
             otrasRespuestasIngles.add(entradaString("una respuesta incorrecta (ingles)"));
         }
@@ -28,11 +28,11 @@ public class pregunta {
             otrasRespuestasEspañol.add(entradaString("una respuesta incorrecta (español)"));
         }
     }
-    public pregunta(String palabraEspañol, String respuestaIngles, ArrayList<String> AlternativasIngles,ArrayList<String> AlternativasEspañol) { 
+    public pregunta(String correctaEspañol, String correctaIngles, ArrayList<String> AlternativasIngles,ArrayList<String> AlternativasEspañol) { 
         otrasRespuestasEspañol=new ArrayList<>();
         otrasRespuestasIngles=new ArrayList<>();
-        this.palabraEspañol = palabraEspañol;
-        this.respuestaIngles = respuestaIngles;
+        this.palabraEspañol = correctaEspañol;
+        this.palabraIngles = correctaIngles;
         for (String string : AlternativasEspañol) {
             this.otrasRespuestasEspañol.add(string);
         }
@@ -69,7 +69,7 @@ public class pregunta {
         String[] opciones = new String[4];
 
         // Agregar la respuesta correcta y otras opciones al array
-        opciones[0] = respuestaIngles;
+        opciones[0] = palabraIngles;
         for (int i = 0; i < 3; i++) {
             opciones[i + 1] = this.otrasRespuestasIngles.get(i);
         }
@@ -80,7 +80,7 @@ public class pregunta {
         // Identificar la posición de la respuesta correcta en el array
         int respuestaCorrectaIndex = 0;
         for (int i = 0; i < opciones.length; i++) {
-            if (opciones[i].equals(respuestaIngles)) {
+            if (opciones[i].equals(palabraIngles)) {
                 respuestaCorrectaIndex = i;
                 break;
             }
@@ -120,7 +120,7 @@ public class pregunta {
         }
 
         // Llamar al método opcionMultiple() para que el usuario seleccione una opción
-        int respuestaUsuario = opcionMultiple(respuestaIngles, opciones);
+        int respuestaUsuario = opcionMultiple(palabraIngles, opciones);
 
         // Verificar si la respuesta es correcta
         boolean respuestaCorrecta = (respuestaUsuario == respuestaCorrectaIndex);
@@ -170,11 +170,11 @@ public class pregunta {
     public void setPalabraEspañol(String pregunta) {
         this.palabraEspañol = pregunta;
     }
-    public String getRespuestaIngles() {
-        return respuestaIngles;
+    public String getPalabraIngles() {
+        return palabraIngles;
     }
-    public void setRespuestaIngles(String respuesta) {
-        this.respuestaIngles = respuesta;
+    public void setPalabraIngles(String respuesta) {
+        this.palabraIngles = respuesta;
     }
     public String getOtrasRespuestas(int index) {
         return otrasRespuestasIngles.get(index);
