@@ -131,7 +131,7 @@ public class Menu {
             String[]opciones={"Registar una nueva pregunta","Calificaciones","Salir"};
             opcion=opcionMultiple(opciones, "Administrador", "Menú Administrador");
             switch (opcion) {
-                case 0:
+                case 0: //nueva pregunta
                     listaDePreguntas.add(new pregunta());
                     break;
                 case 1:

@@ -19,8 +19,8 @@ public class pregunta {
     public pregunta(){ //crea la pregunta
         otrasRespuestasEspañol=new ArrayList<>();
         otrasRespuestasIngles=new ArrayList<>();
-        this.palabraEspañol=entradaString("la pregunta:");
-        this.palabraIngles=entradaString("la respuesta correcta:");
+        this.palabraEspañol=entradaString("La palabra en español:");
+        this.palabraIngles=entradaString("La traduccion al ingles de \'"+this.palabraEspañol+"\'");
         while (otrasRespuestasIngles.size()<4) {
             otrasRespuestasIngles.add(entradaString("una respuesta incorrecta (ingles)"));
         }
@@ -48,7 +48,7 @@ public class pregunta {
         String aux=null;
         do{
             aux=JOptionPane.showInputDialog(null,"Ingrese "+mensaje);
-            if(aux!=null&& aux.matches(".*\\d+.*")){
+            if(aux!=null|| aux.matches(".*\\d+.*")){
                 int aux2=JOptionPane.showConfirmDialog(null, "Esta seguro que quiere registrar:\n"+aux);
                 if(aux2==0){
                     break;
@@ -136,7 +136,7 @@ public class pregunta {
         // Mostrar el cuestionario en JOptionPane
         String respuestaUsuario = (String) JOptionPane.showInputDialog(
                 null,
-                "Traduce la palabra '" + palabraEspañol + "':",
+                "Traduce la palabra '" + Pregunta + "':",
                 "Cuestionario",
                 JOptionPane.QUESTION_MESSAGE,
                 null,
