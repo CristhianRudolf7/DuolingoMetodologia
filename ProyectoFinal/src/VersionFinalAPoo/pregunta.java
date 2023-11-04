@@ -51,8 +51,11 @@ public class pregunta {
         }while(true);
         return aux;
     }
+    /*
+     * Inicia la pregunta
+     */
 
-    //inicia pregunta
+    //inicia pregunta español (pregunta) a ingles (respuestas)
     
     public boolean iniciaPreguntaEspañolIngles() {
         // Crear un array para almacenar las opciones, incluyendo la respuesta correcta
@@ -85,7 +88,7 @@ public class pregunta {
         return respuestaCorrecta;
     }
 
-    //inicia pregunta ingles a español
+    //inicia pregunta ingles (pregunta) a español (respuestas)
 
     public boolean iniciaPreguntaInglesEspañol() {
         // Crear un array para almacenar las opciones, incluyendo la respuesta correcta
@@ -104,19 +107,24 @@ public class pregunta {
         // Identificar la posición de la respuesta correcta en el array
         int respuestaCorrectaIndex = 0;
         for (int i = 0; i < opciones.length; i++) {
-            if (opciones[i].equals(respuestaIngles)) {
+            if (opciones[i].equals(palabraEspañol)) {
                 respuestaCorrectaIndex = i;
                 break;
             }
         }
 
         // Llamar al método opcionMultiple() para que el usuario seleccione una opción
-        int respuestaUsuario = opcionMultiple(palabraEspañol, opciones);
+        int respuestaUsuario = opcionMultiple(respuestaIngles, opciones);
 
         // Verificar si la respuesta es correcta
         boolean respuestaCorrecta = (respuestaUsuario == respuestaCorrectaIndex);
         return respuestaCorrecta;
     }
+
+
+    /*
+     * Generador de  opciones múltiples y ottros métodos
+     */
 
     public int opcionMultiple(String Pregunta, String[] opciones) {
         // Mostrar el cuestionario en JOptionPane
