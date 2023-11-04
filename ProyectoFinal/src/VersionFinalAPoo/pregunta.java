@@ -12,8 +12,7 @@ public class pregunta {
     ArrayList<String>otrasRespuestasIngles=new ArrayList<>();
     ArrayList<String>otrasRespuestasEspañol=new ArrayList<>();
 
-    //atributo si esta respuesta se guarda en un usuario
-    String respuestaEscogida;
+    
 
     //metodos
     //constructores
@@ -27,12 +26,11 @@ public class pregunta {
             otrasRespuestasEspañol.add(entradaString("una respuesta incorrecta (español)"));
         }
     }
-    public pregunta(String palabraEspañol, String respuestaIngles, ArrayList<String> otrasRespuestasIngles,ArrayList<String> otrasRespuestasEspañol, String respuestaEscogida) { 
+    public pregunta(String palabraEspañol, String respuestaIngles, ArrayList<String> otrasRespuestasIngles,ArrayList<String> otrasRespuestasEspañol) { 
         this.palabraEspañol = palabraEspañol;
         this.respuestaIngles = respuestaIngles;
         this.otrasRespuestasIngles = otrasRespuestasIngles;
         this.otrasRespuestasEspañol = otrasRespuestasEspañol;
-        this.respuestaEscogida = respuestaEscogida;
     }
 
 
@@ -176,12 +174,6 @@ public class pregunta {
 
     public void setOtrasRespuestasIngles(ArrayList<String> otrasRespuestas) {
         this.otrasRespuestasIngles = otrasRespuestas;
-    }
-    public String getRespuestaEscogida() {
-        return respuestaEscogida;
-    }
-    public void setRespuestaEscogida(String respuestaEscogida) {
-        this.respuestaEscogida = respuestaEscogida;
     }
     public ArrayList<String> getOtrasRespuestasIngles() {
         return otrasRespuestasIngles;

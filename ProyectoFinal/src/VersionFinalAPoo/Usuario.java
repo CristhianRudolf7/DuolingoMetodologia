@@ -9,10 +9,14 @@ public class Usuario {
     //atributos
     private String nombre;
     private String token;
-    private List<Calificaciones> calificaciones;
+    private List<Calificaciones> calificaciones=new ArrayList<>();
     boolean esEstudiante;
-    boolean esAmdin;
+    boolean esAdmin;
     //constructor
+    public Usuario(String token,boolean esAdmin){
+        this.token=token;
+        this.esAdmin=esAdmin;
+    }
     public Usuario(){
         creaToken();
     }
@@ -50,7 +54,7 @@ public class Usuario {
             }
         }while(true);
         this.esEstudiante=true;
-        this.esAmdin=false;
+        this.esAdmin=false;
     }
     public boolean borrar(){
         if(this.token=="-1"){
@@ -60,16 +64,16 @@ public class Usuario {
         }
     }
 
-    public void cuestionarioIngles_Español(ArrayList<pregunta> listaDePreguntas){ //inica el cuestionario de 5 preguntas
+    public void cuestionarioEspañol_Ingles(ArrayList<pregunta> listaDePreguntas){ //inica el cuestionario de 5 preguntas
         ArrayList<pregunta>listaSeleccionada=new ArrayList<>();
         for (int i = 0; i < 5; i++) {//añade las preguntas de forma aleatoria
             if(i==0){
-                listaDePreguntas.add(listaDePreguntas.get((int)Math.floor(Math.random()*(listaDePreguntas.size()-1))));
+                listaSeleccionada.add(listaDePreguntas.get((int)Math.floor(Math.random()*(listaDePreguntas.size()-1))));
             }else{
                 do{
                     pregunta preguntaAux=listaDePreguntas.get((int)Math.floor(Math.random()*(listaDePreguntas.size()-1)));
                     if(!listaSeleccionada.contains(preguntaAux)){
-                        listaDePreguntas.add(preguntaAux);
+                        listaSeleccionada.add(preguntaAux);
                         break;
                     }
                 }while(true);
@@ -79,6 +83,32 @@ public class Usuario {
         int totales=0;
         for (pregunta pregunta : listaSeleccionada) {
             boolean correcto=pregunta.iniciaPreguntaEspañolIngles();
+            if(correcto){
+                correctas++;
+            }
+            totales++;
+        }
+        calificaciones.add(new Calificaciones(totales, correctas));//añade lo respondido a calificaciones.
+    }
+    public void cuestionarioIngles_Español(ArrayList<pregunta> listaDePreguntas){ //inica el cuestionario de 5 preguntas
+        ArrayList<pregunta>listaSeleccionada=new ArrayList<>();
+        for (int i = 0; i < 5; i++) {//añade las preguntas de forma aleatoria
+            if(i==0){
+                listaSeleccionada.add(listaDePreguntas.get((int)Math.floor(Math.random()*(listaDePreguntas.size()-1))));
+            }else{
+                do{
+                    pregunta preguntaAux=listaDePreguntas.get((int)Math.floor(Math.random()*(listaDePreguntas.size()-1)));
+                    if(!listaSeleccionada.contains(preguntaAux)){
+                        listaSeleccionada.add(preguntaAux);
+                        break;
+                    }
+                }while(true);
+            }
+        }
+        int correctas=0;
+        int totales=0;
+        for (pregunta pregunta : listaSeleccionada) {
+            boolean correcto=pregunta.iniciaPreguntaInglesEspañol();
             if(correcto){
                 correctas++;
             }
@@ -108,7 +138,7 @@ public class Usuario {
         return esEstudiante;
     }
     public boolean esAdmin(){
-        return esAmdin;
+        return esAdmin;
     }
    
     public String getToken(){

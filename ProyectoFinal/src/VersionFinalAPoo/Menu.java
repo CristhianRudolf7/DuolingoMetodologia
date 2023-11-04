@@ -3,6 +3,7 @@ package VersionFinalAPoo;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,9 +17,12 @@ public class Menu {
     // atributos
     ArrayList<pregunta> listaDePreguntas = new ArrayList<>();
     ArrayList<Usuario> listaDeUsuarios = new ArrayList<>();
+ 
 
     // metodos
     public void menu() {
+        rellenaPreguntasStandar();
+        listaDeUsuarios.add(new Usuario("1234", true));
         do {
             Usuario user;
             String[] opciones = { "Iniciar Sesión", "Registarse", "Descargar notas", "Salir" };
@@ -27,9 +31,9 @@ public class Menu {
                 case 0:// inicia seción
                     user = iniciaSesion();
                     if (user.esEstudiante()) {// si es un estudiante
-                        estudiante(user);
+                        estudiante(user);//inicia el menú de estudiante
                     } else if (user.esAdmin()) {// si es un administrador
-                        admin(user);
+                        admin(user);//inicia el menú de admin
                     }
                     break;
                 case 1:// registrate
@@ -96,10 +100,10 @@ public class Menu {
                     opcion = opcionMultiple(opciones2, "Iniciar Cuestionario:", "Cuestionarios");
                     switch (opcion) {
                         case 0:// español a ingles
-                            
+                            user.cuestionarioEspañol_Ingles(listaDePreguntas);
                             break;
                         case 1:// ingles a español
-
+                            user.cuestionarioIngles_Español(listaDePreguntas);
                             break;
 
                         default:// salir o x
@@ -122,6 +126,41 @@ public class Menu {
     // descargar pdf.
     public void admin(Usuario user) {
 
+    }
+
+    private void rellenaPreguntasStandar(){
+        //1 pregunta
+        ArrayList <String>ArrayIngles=new ArrayList<>();
+        Collections.addAll(ArrayIngles, "Misfortune","Journey","Fare","Campaign");
+        ArrayList <String>ArrayEspañol=new ArrayList<>();
+        Collections.addAll(ArrayEspañol, "Experiencia","Peligro","Recorrido","Odisea");
+        listaDePreguntas.add(new pregunta("Aventura", "Adventure",ArrayIngles, ArrayEspañol));
+        ArrayIngles.clear();
+        ArrayEspañol.clear();
+        //2 pregunta
+        Collections.addAll(ArrayIngles,"Functional","Competent","Efficacious","Capable");
+        Collections.addAll(ArrayEspañol, "Eficaz","Competente","Productivo","Hábil");
+        listaDePreguntas.add(new pregunta("Eficiente", "Efficient", ArrayIngles, ArrayEspañol));
+        ArrayIngles.clear();
+        ArrayEspañol.clear();
+        //pregunta 3
+        Collections.addAll(ArrayIngles,"Outcome","Implication","Repercussion","Event");
+        Collections.addAll(ArrayEspañol, "Resultado","Impacto","Efecto","Circunstancia");
+        listaDePreguntas.add(new pregunta("Consequence", "Consecuencia", ArrayIngles, ArrayEspañol));
+        ArrayIngles.clear();
+        ArrayEspañol.clear();
+        //pregunta 4
+        Collections.addAll(ArrayIngles,"Luminous","Dynamic","Graphic","Lifekike");
+        Collections.addAll(ArrayEspañol, "Brillante","Intenso","Colorido","Realista");
+        listaDePreguntas.add(new pregunta("Vívido", "Vivid", ArrayIngles, ArrayEspañol));
+        ArrayIngles.clear();
+        ArrayEspañol.clear();
+        //pregunta 5
+        Collections.addAll(ArrayIngles,"Adaptable","Tough","Steadfast","Sturdy");
+        Collections.addAll(ArrayEspañol, "Flexible","Resistente","Firme","Fuerte");
+        listaDePreguntas.add(new pregunta("Resiliente", "Resilient", ArrayIngles, ArrayEspañol));
+        ArrayIngles.clear();
+        ArrayEspañol.clear();
     }
 
     public void calificaciones() throws DocumentException {// si accede a sus calificaciones con su token sin iniciar
