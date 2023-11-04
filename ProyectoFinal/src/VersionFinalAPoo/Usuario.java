@@ -37,7 +37,15 @@ public class Usuario {
             int index=0;
             for (int i = 0; i < 2; i++) {
                 index=(int)Math.floor(Math.random()*(nombrelong));
-                this.token=token+nombre.charAt(index);
+                String charaux=""+nombre.charAt(index);
+                charaux=charaux.toLowerCase();
+                if((int)Math.floor(Math.random())==0){ //en minuscula
+                    this.token=token+charaux;
+                }else{//en mayuscula
+                    charaux=charaux.toUpperCase();
+                    this.token=token+charaux;
+                }
+                
                 System.out.println(token);
             }
             for (int i = 0; i < 2; i++) {
