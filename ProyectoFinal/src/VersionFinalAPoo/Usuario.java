@@ -9,13 +9,16 @@ public class Usuario {
     //atributos
     private String nombre;
     private String token;
-    private List<Calificaciones> calificaciones=new ArrayList<>();
+    private ArrayList<Calificaciones> calificaciones=new ArrayList<>();
     boolean esEstudiante;
     boolean esAdmin;
     //constructor
     public Usuario(String token,boolean esAdmin){
         this.token=token;
         this.esAdmin=esAdmin;
+        if(!esAdmin){
+            this.esEstudiante=true;
+        }
     }
     public Usuario(){
         creaToken();
@@ -65,18 +68,21 @@ public class Usuario {
     }
 
     public void cuestionarioEspañol_Ingles(ArrayList<pregunta> listaDePreguntas){ //inica el cuestionario de 5 preguntas
+        
         ArrayList<pregunta>listaSeleccionada=new ArrayList<>();
-        for (int i = 0; i < 5; i++) {//añade las preguntas de forma aleatoria
+        for (int i = 0; i < 4; i++) {//añade las preguntas de forma aleatoria
             if(i==0){
                 listaSeleccionada.add(listaDePreguntas.get((int)Math.floor(Math.random()*(listaDePreguntas.size()-1))));
             }else{
+                boolean repetir=true;
                 do{
                     pregunta preguntaAux=listaDePreguntas.get((int)Math.floor(Math.random()*(listaDePreguntas.size()-1)));
                     if(!listaSeleccionada.contains(preguntaAux)){
                         listaSeleccionada.add(preguntaAux);
-                        break;
+                        System.out.println(listaSeleccionada.toString()); //auxiliar para saber si hay algun error
+                        repetir=false;
                     }
-                }while(true);
+                }while(repetir);
             }
         }
         int correctas=0;
@@ -88,21 +94,22 @@ public class Usuario {
             }
             totales++;
         }
-        calificaciones.add(new Calificaciones(totales, correctas));//añade lo respondido a calificaciones.
+        calificaciones.add(new Calificaciones(totales, correctas));//añade lo respondido a calificaciones, una nueva calificacion por 1 questionario
     }
     public void cuestionarioIngles_Español(ArrayList<pregunta> listaDePreguntas){ //inica el cuestionario de 5 preguntas
         ArrayList<pregunta>listaSeleccionada=new ArrayList<>();
-        for (int i = 0; i < 5; i++) {//añade las preguntas de forma aleatoria
+        for (int i = 0; i < 4; i++) {//añade las preguntas de forma aleatoria
             if(i==0){
                 listaSeleccionada.add(listaDePreguntas.get((int)Math.floor(Math.random()*(listaDePreguntas.size()-1))));
             }else{
+                boolean repetir=true;
                 do{
                     pregunta preguntaAux=listaDePreguntas.get((int)Math.floor(Math.random()*(listaDePreguntas.size()-1)));
                     if(!listaSeleccionada.contains(preguntaAux)){
                         listaSeleccionada.add(preguntaAux);
-                        break;
+                        repetir=false;
                     }
-                }while(true);
+                }while(repetir);
             }
         }
         int correctas=0;
@@ -161,7 +168,7 @@ public class Usuario {
         return calificaciones;
     }
 
-    public void setCalificaciones(List<Calificaciones> calificaciones) {
+    public void setCalificaciones(ArrayList<Calificaciones> calificaciones) {
         this.calificaciones = calificaciones;
     }
     

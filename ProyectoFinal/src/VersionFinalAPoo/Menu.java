@@ -23,6 +23,7 @@ public class Menu {
     public void menu() {
         rellenaPreguntasStandar();
         listaDeUsuarios.add(new Usuario("1234", true));
+        listaDeUsuarios.add(new Usuario("user", false));
         do {
             Usuario user;
             String[] opciones = { "Iniciar Sesión", "Registarse", "Descargar notas", "Salir" };
@@ -125,7 +126,22 @@ public class Menu {
     // ver calificaciones.
     // descargar pdf.
     public void admin(Usuario user) {
-
+        int opcion;
+        do{
+            String[]opciones={"Registar una nueva pregunta","Calificaciones","Salir"};
+            opcion=opcionMultiple(opciones, "Administrador", "Menú Administrador");
+            switch (opcion) {
+                case 0:
+                    listaDePreguntas.add(new pregunta());
+                    break;
+                case 1:
+                    
+                    break;
+                
+                default:
+                    break;
+            }
+        }while(opcion!=2);
     }
 
     private void rellenaPreguntasStandar(){
@@ -146,7 +162,7 @@ public class Menu {
         //pregunta 3
         Collections.addAll(ArrayIngles,"Outcome","Implication","Repercussion","Event");
         Collections.addAll(ArrayEspañol, "Resultado","Impacto","Efecto","Circunstancia");
-        listaDePreguntas.add(new pregunta("Consequence", "Consecuencia", ArrayIngles, ArrayEspañol));
+        listaDePreguntas.add(new pregunta("Consecuencia", "Consequence", ArrayIngles, ArrayEspañol));
         ArrayIngles.clear();
         ArrayEspañol.clear();
         //pregunta 4

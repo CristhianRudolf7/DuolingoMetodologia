@@ -9,14 +9,16 @@ public class pregunta {
     //atributos
     String palabraEspañol;
     String respuestaIngles;
-    ArrayList<String>otrasRespuestasIngles=new ArrayList<>();
-    ArrayList<String>otrasRespuestasEspañol=new ArrayList<>();
+    ArrayList<String>otrasRespuestasIngles;
+    ArrayList<String>otrasRespuestasEspañol;
 
     
 
     //metodos
     //constructores
     public pregunta(){ //crea la pregunta
+        otrasRespuestasEspañol=new ArrayList<>();
+        otrasRespuestasIngles=new ArrayList<>();
         this.palabraEspañol=entradaString("la pregunta:");
         this.respuestaIngles=entradaString("la respuesta correcta:");
         while (otrasRespuestasIngles.size()<4) {
@@ -26,11 +28,17 @@ public class pregunta {
             otrasRespuestasEspañol.add(entradaString("una respuesta incorrecta (español)"));
         }
     }
-    public pregunta(String palabraEspañol, String respuestaIngles, ArrayList<String> otrasRespuestasIngles,ArrayList<String> otrasRespuestasEspañol) { 
+    public pregunta(String palabraEspañol, String respuestaIngles, ArrayList<String> AlternativasIngles,ArrayList<String> AlternativasEspañol) { 
+        otrasRespuestasEspañol=new ArrayList<>();
+        otrasRespuestasIngles=new ArrayList<>();
         this.palabraEspañol = palabraEspañol;
         this.respuestaIngles = respuestaIngles;
-        this.otrasRespuestasIngles = otrasRespuestasIngles;
-        this.otrasRespuestasEspañol = otrasRespuestasEspañol;
+        for (String string : AlternativasEspañol) {
+            this.otrasRespuestasEspañol.add(string);
+        }
+        for (String string : AlternativasIngles) {
+            this.otrasRespuestasIngles.add(string);
+        }
     }
 
 
@@ -63,7 +71,7 @@ public class pregunta {
         // Agregar la respuesta correcta y otras opciones al array
         opciones[0] = respuestaIngles;
         for (int i = 0; i < 3; i++) {
-            opciones[i + 1] = otrasRespuestasIngles.get(i);
+            opciones[i + 1] = this.otrasRespuestasIngles.get(i);
         }
 
         // Mezclar todas las opciones de forma aleatoria
@@ -96,7 +104,7 @@ public class pregunta {
         // Agregar la respuesta correcta y otras opciones al array
         opciones[0] = palabraEspañol;
         for (int i = 0; i < 3; i++) {
-            opciones[i + 1] = otrasRespuestasEspañol.get(i);
+            opciones[i + 1] = this.otrasRespuestasEspañol.get(i);
         }
 
         // Mezclar todas las opciones de forma aleatoria
