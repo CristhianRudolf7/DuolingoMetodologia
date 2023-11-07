@@ -1,5 +1,7 @@
 # DuolingoMetodologia
-Este es un readme, primero, Si les da error en el codigo necesitan descargar una libreria (.jar) de: https://www.discoduroderoer.es/crear-pdf-con-itext-5-en-java/
+Este es un readme
+Primero, Si les da error en el codigo necesitan descargar una libreria (.jar) de: https://www.discoduroderoer.es/crear-pdf-con-itext-5-en-java/
+abajo el como instalar la libreria:
 
 - neatbeans:
 añadanlo en en el apartado libraries:
