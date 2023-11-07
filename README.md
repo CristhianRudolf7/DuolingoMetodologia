@@ -1,6 +1,7 @@
 # DuolingoMetodologia
 Este es un readme
 Primero, Si les da error en el codigo necesitan descargar una libreria (.jar) de: https://www.discoduroderoer.es/crear-pdf-con-itext-5-en-java/
+
 link de descarga directa -> https://repo1.maven.org/maven2/com/itextpdf/itextpdf/5.5.13.2/itextpdf-5.5.13.2.jar
 
 
